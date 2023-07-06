@@ -44,6 +44,11 @@ parsers: # array
           proxies:
             - DIRECT
             - iSwitchyProxy
+        - name: iSwitchyFinal
+          type: select
+          proxies:
+            - iSwitchyDirect
+            - iSwitchyProxy
         - name: iSwitchyUS_JP_KR
           type: select
           proxies:
@@ -54,11 +59,6 @@ parsers: # array
           type: select
           proxies:
             - iProxyHK_TW
-            - iSwitchyDirect
-            - iSwitchyProxy
-        - name: iSwitchyFinal
-          type: select
-          proxies:
             - iSwitchyDirect
             - iSwitchyProxy
         - name: iSwitchyBilbili
@@ -143,6 +143,10 @@ parsers: # array
           enable: true
           listen: :53
           enhanced-mode: fake-ip
+          allow-lan: false
+          mode: Rule
+          log-level: warning
+          external-controller: 127.0.0.1:9090
           nameserver:
             - https://1.12.12.12/dns-query
             - https://223.5.5.5/dns-query
