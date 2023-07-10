@@ -210,6 +210,8 @@ parsers: # array
           interval: 86400
       prepend-rules:
 #        - PROCESS-NAME,哔哩哔哩.exe,iSwitchyHK_TW
+        - IP-CIDR,1.12.12.12/32,iSwitchyDirect
+        - IP-CIDR,223.5.5.5/32,iSwitchyDirect
         - RULE-SET,applications,iSwitchyDirect
         - DOMAIN-SUFFIX,beanfun.com,iSwitchyHK_TW
         - DOMAIN-SUFFIX,openai.com,iSwitchyUS_JP_KR_SG
