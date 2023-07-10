@@ -1,0 +1,7 @@
+#!name=Service
+#!desc=Custom rule for Service
+
+[Rule]
+RULE-SET,https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt,iURLTestHK
+RULE-SET,https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt,iURLTestHK
+RULE-SET,https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Shadowrocket/Microsoft/Microsoft.list,iURLTestHK
