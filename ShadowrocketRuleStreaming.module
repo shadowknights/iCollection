@@ -1,5 +1,5 @@
-#!name=CustomRule
-#!desc=CustomRule
+#!name=Streaming
+#!desc=Custom rule for Streaming
 
 [Rule]
 RULE-SET,https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Shadowrocket/BiliBili/BiliBili.list,iURLTestHK
