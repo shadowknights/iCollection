@@ -32,6 +32,10 @@ parsers: # array
           type: select
           proxies:
             - DIRECT
+        - name: iProxyIPLC
+          type: select
+          proxies:
+            - DIRECT
         - name: iProxyUS
           type: url-test
           proxies:
@@ -89,6 +93,7 @@ parsers: # array
             - iProxyKR
             - iProxySG
             - iProxyUS
+            - iProxyIPLC
             - iSwitchyDirect
         - name: iSwitchyDirect
           type: select
@@ -129,18 +134,20 @@ parsers: # array
         - name: iSwitchyService
           type: select
           proxies:
-            - iSwitchyDirect
+            - iSwitchyUS_JP_KR_SG
             - iSwitchyHK_TW
+            - iSwitchyDirect
       commands:
 #        - proxy-groups.iLatency.proxies=[]proxyNames|^((?!剩余|重置|到期|套餐).)*$
 #        - proxy-groups.iFallback.proxies=[]proxyNames|^((?!剩余|重置|到期|套餐).)*$
         - proxy-groups.iProxy.proxies=[]proxyNames|^((?!剩余|重置|到期|套餐).)*$
-        - proxy-groups.iProxyUS.proxies=[]proxyNames|(美国|US|UnitedStates)
-        - proxy-groups.iProxyJP.proxies=[]proxyNames|(日本|JP|Japan)
-        - proxy-groups.iProxyKR.proxies=[]proxyNames|(韩国|KR|Korea)
-        - proxy-groups.iProxySG.proxies=[]proxyNames|(新加坡|SG|Singapore)
-        - proxy-groups.iProxyHK.proxies=[]proxyNames|(香港|HK|Hongkong)
-        - proxy-groups.iProxyTW.proxies=[]proxyNames|(台湾|TW|Taiwan)
+        - proxy-groups.iProxyIPLC.proxies=[]proxyNames|(IPLC|PRO)
+        - proxy-groups.iProxyUS.proxies=[]proxyNames|^((?!IPLC|PRO).)*(美国|US|UnitedStates)((?!IPLC|PRO).)*$
+        - proxy-groups.iProxyJP.proxies=[]proxyNames|^((?!IPLC|PRO).)*(日本|JP|Japan)((?!IPLC|PRO).)*$
+        - proxy-groups.iProxyKR.proxies=[]proxyNames|^((?!IPLC|PRO).)*(韩国|KR|Korea)((?!IPLC|PRO).)*$
+        - proxy-groups.iProxySG.proxies=[]proxyNames|^((?!IPLC|PRO).)*(新加坡|SG|Singapore)((?!IPLC|PRO).)*$
+        - proxy-groups.iProxyHK.proxies=[]proxyNames|^((?!IPLC|PRO).)*(香港|HK|Hongkong)((?!IPLC|PRO).)*$
+        - proxy-groups.iProxyTW.proxies=[]proxyNames|^((?!IPLC|PRO).)*(台湾|TW|Taiwan)((?!IPLC|PRO).)*$
       mix-rule-providers:
         icloud:
           type: http
@@ -213,16 +220,16 @@ parsers: # array
         - IP-CIDR,1.12.12.12/32,iSwitchyDirect
         - IP-CIDR,223.5.5.5/32,iSwitchyDirect
         - RULE-SET,applications,iSwitchyDirect
-        - DOMAIN-SUFFIX,beanfun.com,iSwitchyHK_TW
-        - DOMAIN-SUFFIX,openai.com,iSwitchyUS_JP_KR_SG
-        - DOMAIN-SUFFIX,openstack.org,iSwitchyUS_JP_KR_SG
-        - DOMAIN-SUFFIX,bing.com,iSwitchyUS_JP_KR_SG
         - RULE-SET,private,iSwitchyDirect
-        - RULE-SET,icloud,iSwitchyService
-        - RULE-SET,apple,iSwitchyService
-        - RULE-SET,Microsoft,iSwitchyService
+        - DOMAIN-SUFFIX,openai.com,iSwitchyService
+        - DOMAIN-SUFFIX,openstack.org,iSwitchyService
+        - DOMAIN-SUFFIX,bing.com,iSwitchyService
+#        - RULE-SET,Microsoft,iSwitchyService
+#        - RULE-SET,icloud,iSwitchyService
+#        - RULE-SET,apple,iSwitchyService
         - RULE-SET,netflix,iSwitchyNetflix
         - RULE-SET,bilibili,iSwitchyBilbili
+        - DOMAIN-SUFFIX,beanfun.com,iSwitchyHK_TW
         - RULE-SET,proxy,iSwitchyProxy
         - RULE-SET,direct,iSwitchyDirect
         - RULE-SET,lancidr,iSwitchyDirect
