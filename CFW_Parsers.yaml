@@ -18,8 +18,8 @@ parsers: # array
           log-level: warning
           external-controller: 127.0.0.1:9090
           nameserver:
-            - https://1.12.12.12/dns-query
             - https://223.5.5.5/dns-query
+            - https://1.1.1.1/dns-query
           fallback: []     
       prepend-proxy-groups:
 #        - name: iFallback
@@ -137,6 +137,12 @@ parsers: # array
             - iSwitchyUS_JP_KR_SG
             - iSwitchyHK_TW
             - iSwitchyDirect
+        - name: iSwitchyAM
+          type: select
+          proxies:
+            - iSwitchyDirect
+            - iSwitchyHK_TW
+            - iSwitchyUS_JP_KR_SG
       commands:
 #        - proxy-groups.iLatency.proxies=[]proxyNames|^((?!剩余|重置|到期|套餐).)*$
 #        - proxy-groups.iFallback.proxies=[]proxyNames|^((?!剩余|重置|到期|套餐).)*$
@@ -217,19 +223,19 @@ parsers: # array
           interval: 86400
       prepend-rules:
 #        - PROCESS-NAME,哔哩哔哩.exe,iSwitchyHK_TW
-        - IP-CIDR,1.12.12.12/32,iSwitchyDirect
         - IP-CIDR,223.5.5.5/32,iSwitchyDirect
-        - RULE-SET,applications,iSwitchyDirect
-        - RULE-SET,private,iSwitchyDirect
+        - IP-CIDR,1.1.1.1/32,iSwitchyDirect
         - DOMAIN-SUFFIX,openai.com,iSwitchyService
-        - DOMAIN-SUFFIX,openstack.org,iSwitchyService
         - DOMAIN-SUFFIX,bing.com,iSwitchyService
-#        - RULE-SET,Microsoft,iSwitchyService
-#        - RULE-SET,icloud,iSwitchyService
-#        - RULE-SET,apple,iSwitchyService
+#        - RULE-SET,applications,iSwitchyDirect
+        - RULE-SET,Microsoft,iSwitchyAM
+        - RULE-SET,apple,iSwitchyAM
+        - RULE-SET,icloud,iSwitchyAM
         - RULE-SET,netflix,iSwitchyNetflix
         - RULE-SET,bilibili,iSwitchyBilbili
         - DOMAIN-SUFFIX,beanfun.com,iSwitchyHK_TW
+        - DOMAIN-SUFFIX,hk.beanfun.com,iSwitchyHK_TW
+        - RULE-SET,private,iSwitchyDirect
         - RULE-SET,proxy,iSwitchyProxy
         - RULE-SET,direct,iSwitchyDirect
         - RULE-SET,lancidr,iSwitchyDirect
