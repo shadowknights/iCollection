@@ -224,7 +224,7 @@ parsers: # array
       prepend-rules:
 #        - PROCESS-NAME,哔哩哔哩.exe,iSwitchyHK_TW
         - IP-CIDR,223.5.5.5/32,iSwitchyDirect
-        - IP-CIDR,1.1.1.1/32,iSwitchyDirect
+        - IP-CIDR,1.1.1.1/32,iSwitchyHK_TW
         - DOMAIN-SUFFIX,openai.com,iSwitchyService
         - DOMAIN-SUFFIX,bing.com,iSwitchyService
 #        - RULE-SET,applications,iSwitchyDirect
