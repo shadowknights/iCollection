@@ -240,5 +240,5 @@ parsers: # array
         - RULE-SET,direct,iSwitchyDirect
         - RULE-SET,lancidr,iSwitchyDirect
         - RULE-SET,cncidr,iSwitchyDirect
-        - GEOIP,CN,iSwitchyDirect
+#        - GEOIP,CN,iSwitchyDirect
         - MATCH,iSwitchyFinal
