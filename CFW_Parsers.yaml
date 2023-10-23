@@ -5,22 +5,29 @@ parsers: # array
         const rawObj = yaml.parse(raw)
         const groups = []
         const rules = []
+        rawObj.mixin = []
         return yaml.stringify({ ...rawObj, 'proxy-groups': groups, rules})
       } 
     yaml:
       mix-object:
+        mixed-port: 7890
+        socks-port: 7891
+        port: 7892
+        ipv6: false
+        enhanced-mode: fake-ip
+        external-controller: 127.0.0.1:9090
+        log-level: warning
+        mode: rule
+        allow-lan: true
+        bind-address: '127.0.0.1'
         dns:
           enable: true
-          listen: :53
-          enhanced-mode: fake-ip
-          allow-lan: false
-          mode: Rule
-          log-level: warning
-          external-controller: 127.0.0.1:9090
           nameserver:
             - https://223.5.5.5/dns-query
             - https://1.1.1.1/dns-query
-          fallback: []     
+          default-nameserver:
+            - 223.5.5.5
+            - 1.1.1.1
       prepend-proxy-groups:
 #        - name: iFallback
 #          type: fallback
@@ -223,19 +230,19 @@ parsers: # array
           interval: 86400
       prepend-rules:
 #        - PROCESS-NAME,哔哩哔哩.exe,iSwitchyHK_TW
-        - IP-CIDR,223.5.5.5/32,iSwitchyDirect
-        - IP-CIDR,1.1.1.1/32,iSwitchyHK_TW
+        - IP-CIDR,223.5.5.5/32,iSwitchyDirect,no-resolve
+        - IP-CIDR,1.1.1.1/32,iSwitchyHK_TW,no-resolve
         - DOMAIN-SUFFIX,openai.com,iSwitchyService
         - DOMAIN-SUFFIX,bing.com,iSwitchyService
 #        - RULE-SET,applications,iSwitchyDirect
-        - RULE-SET,Microsoft,iSwitchyAM
-        - RULE-SET,apple,iSwitchyAM
-        - RULE-SET,icloud,iSwitchyAM
-        - RULE-SET,netflix,iSwitchyNetflix
-        - RULE-SET,bilibili,iSwitchyBilbili
+        - RULE-SET,Microsoft,iSwitchyAM,no-resolve
+        - RULE-SET,apple,iSwitchyAM,no-resolve
+        - RULE-SET,icloud,iSwitchyAM,no-resolve
+        - RULE-SET,netflix,iSwitchyNetflix,no-resolve
+        - RULE-SET,bilibili,iSwitchyBilbili,no-resolve
         - DOMAIN-SUFFIX,beanfun.com,iSwitchyHK_TW
         - DOMAIN-SUFFIX,hk.beanfun.com,iSwitchyHK_TW
-        - RULE-SET,private,iSwitchyDirect
+        - RULE-SET,private,iSwitchyDirect,no-resolve
         - RULE-SET,proxy,iSwitchyProxy
         - RULE-SET,direct,iSwitchyDirect
         - RULE-SET,lancidr,iSwitchyDirect
