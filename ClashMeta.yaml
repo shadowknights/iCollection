@@ -2,8 +2,7 @@ proxy-providers:
   <ProxyProviders_Name>:
     type: http
     url: <URL>
-    interval: 3600
-    path: ./<ProxyProviders_Name>.yaml
+    interval: 86400
 
 proxy-groups:
   - name: infomation
@@ -213,18 +212,6 @@ rule-providers:
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
     path: ./providers/rule/1ddfc7d71b45ca810cb6bdb776adfd27.yaml
     interval: 86400
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
-    path: ./providers/rule/e01ebc9f4cc25e6c28e46f9f0461dbfd.yaml
-    interval: 86400
-  lancidr:
-    type: http
-    behavior: ipcidr
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
-    path: ./providers/rule/86785cc257f0fc065c7c4f00fa3988bc.yaml
-    interval: 86400
   applications:
     type: http
     behavior: classical
@@ -251,23 +238,21 @@ rule-providers:
     interval: 86400
 
 rules:
-  - IP-CIDR,223.5.5.5/32,iSwitchyDirect,no-resolve
-  - IP-CIDR,1.1.1.1/32,iSwitchyHK_TW,no-resolve
   - DOMAIN-SUFFIX,openai.com,iSwitchyService
   - DOMAIN-SUFFIX,bing.com,iSwitchyService
+  - DOMAIN-SUFFIX,beanfun.com,MapleStory
+  - DOMAIN-SUFFIX,hk.beanfun.com,MapleStory
+  - IN-TYPE,INNER,iProxyIPLC
 #  - RULE-SET,applications,iSwitchyDirect
+  - RULE-SET,private,iSwitchyDirect,no-resolve
   - RULE-SET,Microsoft,iSwitchyAM,no-resolve
   - RULE-SET,apple,iSwitchyAM,no-resolve
   - RULE-SET,icloud,iSwitchyAM,no-resolve
   - RULE-SET,netflix,iSwitchyNetflix,no-resolve
   - RULE-SET,bilibili,iSwitchyBilbili,no-resolve
-  - DOMAIN-SUFFIX,beanfun.com,MapleStory
-  - DOMAIN-SUFFIX,hk.beanfun.com,MapleStory
-  - IN-TYPE,INNER,iProxyIPLC
-  - RULE-SET,private,iSwitchyDirect,no-resolve
   - RULE-SET,proxy,iSwitchyProxy
   - RULE-SET,direct,iSwitchyDirect
-  - RULE-SET,lancidr,iSwitchyDirect
-  - RULE-SET,cncidr,iSwitchyDirect
-#  - GEOIP,CN,iSwitchyDirect
+  - GEOIP,LAN,DIRECT,no-resolve
+#  - GEOSITE,CN,iSwitchyDirect
+  - GEOIP,CN,iSwitchyDirect,no-resolve
   - MATCH,iSwitchyFinal
