@@ -140,25 +140,47 @@ proxy-groups:
       - iSwitchyHK_TW
       - iProxy
 
-port: 17892
-socks-port: 17891
 mixed-port: 17890
 allow-lan: true
 bind-address: 127.0.0.1
 mode: rule
 log-level: warning
 external-controller: 127.0.0.1:19090
-ipv6: false
-enhanced-mode: fake-ip
+unified-delay: false
+tcp-concurrent: true
+
+geodata-mode: false
+geox-url:
+  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+  mmdb: "https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb"
 
 dns:
   enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
   nameserver:
-    - https://223.5.5.5/dns-query
-    - https://1.1.1.1/dns-query
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   default-nameserver:
     - 223.5.5.5
-    - 1.1.1.1
+    - 119.29.29.29
+  fallback: []
+  nameserver-policy: {}
+  fake-ip-filter:
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - +.stun.*.*.*.*.*
+    - "*.n.n.srv.nintendo.net"
+    - +.stun.playstation.net
+    - xbox.*.*.microsoft.com
+    - "*.*.xboxlive.com"
+    - "*.msftncsi.com"
+    - "*.msftconnecttest.com"
+    - WORKGROUP
+    - '+.lan'
+    - '+.local'
 
 rule-providers:
   icloud:
