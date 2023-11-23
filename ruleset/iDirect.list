@@ -1,1 +1,2 @@
-SRC-IP-CIDR,172.16.16.88/29
+payload:
+  - SRC-IP-CIDR,172.16.16.88/29
