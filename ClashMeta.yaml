@@ -1,8 +1,11 @@
+# Clash 配置格式
+
 proxy-providers:
   <ProxyProviders_Name>:
     type: http
     url: <URL>
     interval: 86400
+    path: ./<ProxyProviders_Name>.yaml
 
 proxy-groups:
   - name: infomation
@@ -21,7 +24,7 @@ proxy-groups:
       - <ProxyProviders_Name>
     filter: ^((?!IPLC|PRO).)*(香港|HK|Hongkong)((?!IPLC|PRO).)*$
     url: http://www.gstatic.com/generate_204
-    interval: 300
+    interval: 600
     tolerance: 100
     lazy: true
   - name: iProxyTW
@@ -30,7 +33,7 @@ proxy-groups:
       - <ProxyProviders_Name>
     filter: ^((?!IPLC|PRO).)*(台湾|TW|Taiwan)((?!IPLC|PRO).)*$
     url: http://www.gstatic.com/generate_204
-    interval: 300
+    interval: 600
     tolerance: 100
     lazy: true
   - name: iProxySG
@@ -39,7 +42,7 @@ proxy-groups:
       - <ProxyProviders_Name>
     filter: ^((?!IPLC|PRO).)*(新加坡|SG|Singapore)((?!IPLC|PRO).)*$
     url: http://www.gstatic.com/generate_204
-    interval: 300
+    interval: 600
     tolerance: 100
     lazy: true
   - name: iProxyKR
@@ -48,7 +51,7 @@ proxy-groups:
       - <ProxyProviders_Name>
     filter: ^((?!IPLC|PRO).)*(韩国|KR|Korea)((?!IPLC|PRO).)*$
     url: http://www.gstatic.com/generate_204
-    interval: 300
+    interval: 600
     tolerance: 100
     lazy: true
   - name: iProxyJP
@@ -57,7 +60,7 @@ proxy-groups:
       - <ProxyProviders_Name>
     filter: ^((?!IPLC|PRO).)*(日本|JP|Japan)((?!IPLC|PRO).)*$
     url: http://www.gstatic.com/generate_204
-    interval: 300
+    interval: 600
     tolerance: 100
     lazy: true
   - name: iProxyUS
@@ -66,7 +69,7 @@ proxy-groups:
       - <ProxyProviders_Name>
     filter: ^((?!IPLC|PRO).)*(美国|US|UnitedStates)((?!IPLC|PRO).)*$
     url: http://www.gstatic.com/generate_204
-    interval: 300
+    interval: 600
     tolerance: 100
     lazy: true
   - name: iProxyIPLC
@@ -127,13 +130,13 @@ proxy-groups:
       - iSwitchyUS_JP_KR_SG
       - iSwitchyHK_TW
       - iSwitchyDirect
-  - name: iSwitchyAM
+  - name: iSwitchyMA
     type: select
     proxies:
       - iSwitchyDirect
       - iSwitchyHK_TW
       - iSwitchyUS_JP_KR_SG
-  - name: MapleStory
+  - name: iMaplestory
     type: select
     proxies:
       - iSwitchyHK_TW
@@ -148,7 +151,7 @@ external-controller: 127.0.0.1:19090
 unified-delay: false
 tcp-concurrent: true
 
-geodata-mode: false
+geodata-mode: true
 geox-url:
   geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
   geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
@@ -182,77 +185,49 @@ dns:
     - '+.local'
 
 rule-providers:
-  icloud:
-    type: http
-    behavior: domain
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
-    path: ./providers/rule/e3d3c05cb5d577d3668b6e4a75ec948a.yaml
-    interval: 86400
-  apple:
-    type: http
-    behavior: domain
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
-    path: ./providers/rule/b4ea3fc289ebc45465cc6e2fb4762a3e.yaml
-    interval: 86400
   proxy:
     type: http
     behavior: domain
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
-    path: ./providers/rule/b38427df77d4e9f81682d0c8b394b20b.yaml
+    path: ./providers/rule/proxy.yaml
     interval: 86400
   direct:
     type: http
     behavior: domain
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
-    path: ./providers/rule/5b5a90b8e3929465e887c6882195c53f.yaml
+    path: ./providers/rule/direct.yaml
     interval: 86400
-  private:
-    type: http
-    behavior: domain
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
-    path: ./providers/rule/1ddfc7d71b45ca810cb6bdb776adfd27.yaml
-    interval: 86400
-  applications:
+  iMaplestory:
     type: http
     behavior: classical
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt
-    path: ./providers/rule/f8a3e2584a4c87f19ad04bdd508f1174.yaml
+    url: https://raw.githubusercontent.com/shadowknights/iCollection/main/ruleset/iMaplestory.list
+    path: ./providers/rule/iMaplestory.yaml
     interval: 86400
-  bilibili:
+  iOpenAI:
     type: http
     behavior: classical
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml
-    path: ./providers/rule/9448ae68245515ca53be03a5b39de7c3.yaml
+    url: https://raw.githubusercontent.com/shadowknights/iCollection/main/ruleset/iOpenAI.list
+    path: ./providers/rule/iOpenAI.yaml
     interval: 86400
-  netflix:
-    type: http
-    behavior: classical
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix_Classical.yaml
-    path: ./providers/rule/e03a0b37700f4b5953ad1d06bb5fde8c.yaml
-    interval: 86400
-  Microsoft:
-    type: http
-    behavior: classical
-    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml
-    path: ./providers/rule/351df461e83cf2aba3372c457ab53e22.yaml
-    interval: 86400
-
 rules:
-  - DOMAIN-SUFFIX,openai.com,iSwitchyService
-  - DOMAIN-SUFFIX,bing.com,iSwitchyService
-  - DOMAIN-SUFFIX,beanfun.com,MapleStory
-  - DOMAIN-SUFFIX,hk.beanfun.com,MapleStory
-  - IN-TYPE,INNER,iProxyIPLC
+#  - IN-TYPE,INNER,iProxyIPLC
 #  - RULE-SET,applications,iSwitchyDirect
-  - RULE-SET,private,iSwitchyDirect,no-resolve
-  - RULE-SET,Microsoft,iSwitchyAM,no-resolve
-  - RULE-SET,apple,iSwitchyAM,no-resolve
-  - RULE-SET,icloud,iSwitchyAM,no-resolve
-  - RULE-SET,netflix,iSwitchyNetflix,no-resolve
-  - RULE-SET,bilibili,iSwitchyBilbili,no-resolve
+  - RULE-SET,iMaplestory,iMaplestory
+  - RULE-SET,iOpenAI,iSwitchyService
+  - GEOSITE,private,DIRECT
+  - GEOSITE,microsoft@cn,iSwitchyDirect
+  - GEOSITE,apple@cn,iSwitchyDirect
+  - GEOSITE,icloud@cn,iSwitchyDirect
+  - GEOSITE,microsoft,iSwitchyMA
+  - GEOSITE,apple,iSwitchyMA
+  - GEOSITE,icloud,iSwitchyMA
+  - GEOSITE,onedrive,iSwitchyMA
+  - GEOSITE,netflix,iSwitchyNetflix
   - RULE-SET,proxy,iSwitchyProxy
-  - RULE-SET,direct,iSwitchyDirect
+  - GEOSITE,bilibili,iSwitchyBilbili
+  - GEOSITE,CN,iSwitchyDirect
   - GEOIP,LAN,DIRECT,no-resolve
-#  - GEOSITE,CN,iSwitchyDirect
+#  - RULE-SET,direct,iSwitchyDirect
+  - GEOSITE,CN,iSwitchyDirect
   - GEOIP,CN,iSwitchyDirect,no-resolve
   - MATCH,iSwitchyFinal
