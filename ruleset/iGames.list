@@ -1,2 +1,2 @@
 payload:
-  - AND,((SRC-IP-CIDR,172.16.16.72/29),(IN-TYPE,TUN))
+  - SRC-IP-CIDR,172.16.16.72/29
