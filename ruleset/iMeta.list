@@ -1,1 +1,2 @@
-IN-TYPE,INNER
+payload:
+  - IN-TYPE,INNER
