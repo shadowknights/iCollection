@@ -1,2 +1,3 @@
-DOMAIN-SUFFIX,beanfun.com
-DOMAIN-SUFFIX,hk.beanfun.com
+payload:
+  - DOMAIN-SUFFIX,beanfun.com
+  - DOMAIN-SUFFIX,hk.beanfun.com
