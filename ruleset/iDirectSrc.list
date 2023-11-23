@@ -1,2 +1,2 @@
 payload:
-  - SRC-IP-CIDR,172.16.16.80/29
+  - SRC-IP-CIDR,172.16.16.80/29,no-resolve
